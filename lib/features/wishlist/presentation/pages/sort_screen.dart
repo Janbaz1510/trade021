@@ -22,19 +22,7 @@ class _SortScreenState extends State<SortScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Reorder"),
-
-        // actions: [
-        //   TextButton(
-        //     onPressed: () {
-        //       context.read<WishlistBloc>().add(SaveReorderedWishlist(tempList));
-        //       Navigator.pop(context);
-        //     },
-        //     child: Text("Save", style: TextStyle(color: Colors.blue)),
-        //   ),
-        // ],
-      ),
+      appBar: AppBar(title: Text("Reorder")),
       body: ReorderableListView(
         onReorder: (oldIndex, newIndex) {
           setState(() {
