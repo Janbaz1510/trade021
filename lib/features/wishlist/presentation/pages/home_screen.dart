@@ -81,6 +81,26 @@ class HomeScreen extends StatelessWidget {
             );
           },
         ),
+        bottomNavigationBar: BottomAppBar(
+          elevation: 10,
+          color: Colors.white,
+          shape: const CircularNotchedRectangle(),
+          child: Container(
+            height: 65,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Icon(Icons.bookmark_border, color: Colors.black),
+                Icon(Icons.shopping_cart_outlined, color: Colors.grey),
+                Icon(Icons.flash_on, color: Colors.grey),
+                Icon(Icons.wallet_travel, color: Colors.grey),
+                Icon(Icons.account_balance_wallet_outlined, color: Colors.grey),
+                Icon(Icons.person, color: Colors.grey),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

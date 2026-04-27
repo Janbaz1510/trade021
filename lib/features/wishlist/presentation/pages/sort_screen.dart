@@ -24,15 +24,16 @@ class _SortScreenState extends State<SortScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Reorder"),
-        actions: [
-          TextButton(
-            onPressed: () {
-              context.read<WishlistBloc>().add(SaveReorderedWishlist(tempList));
-              Navigator.pop(context);
-            },
-            child: Text("Save", style: TextStyle(color: Colors.blue)),
-          ),
-        ],
+
+        // actions: [
+        //   TextButton(
+        //     onPressed: () {
+        //       context.read<WishlistBloc>().add(SaveReorderedWishlist(tempList));
+        //       Navigator.pop(context);
+        //     },
+        //     child: Text("Save", style: TextStyle(color: Colors.blue)),
+        //   ),
+        // ],
       ),
       body: ReorderableListView(
         onReorder: (oldIndex, newIndex) {
@@ -48,19 +49,52 @@ class _SortScreenState extends State<SortScreen> {
             Padding(
               key: ValueKey(item.id),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: CommonRowWidget(
-                title: item.title,
-                subTitle: item.subTitle,
-                currentPrice: item.currentPrice,
-                currentValue: item.currentValue,
+              child: Row(
+                children: [
+                  Icon(Icons.reorder),
+                  SizedBox(width: 12),
+                  Expanded(
+                    child: CommonRowWidget(
+                      title: item.title,
+                      subTitle: item.subTitle,
+                      currentPrice: item.currentPrice,
+                      currentValue: item.currentValue,
+                    ),
+                  ),
+                ],
               ),
             ),
-          // ListTile(
-          //   key: ValueKey(item.id),
-          //   title: Text(item.title),
-          //   leading: Icon(Icons.drag_handle),
-          // ),
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: 85,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 10,
+              offset: const Offset(0, -2),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 30, top: 12),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.black),
+            ),
+            onPressed: () {
+              context.read<WishlistBloc>().add(SaveReorderedWishlist(tempList));
+              Navigator.pop(context);
+            },
+            child: Text(
+              "Save Watchlist",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
       ),
     );
   }
