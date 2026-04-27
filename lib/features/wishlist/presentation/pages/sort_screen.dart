@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trade_021/features/wishlist/domain/entities/wishlist_entity.dart';
 import 'package:trade_021/features/wishlist/presentation/states/bloc/events.dart';
 import 'package:trade_021/features/wishlist/presentation/states/bloc/wishlist_bloc.dart';
+import 'package:trade_021/features/wishlist/presentation/widgets/common_row_widget.dart';
 
 class SortScreen extends StatefulWidget {
   @override
@@ -44,11 +45,21 @@ class _SortScreenState extends State<SortScreen> {
         },
         children: [
           for (final item in tempList)
-            ListTile(
+            Padding(
               key: ValueKey(item.id),
-              title: Text(item.title),
-              leading: Icon(Icons.drag_handle),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: CommonRowWidget(
+                title: item.title,
+                subTitle: item.subTitle,
+                currentPrice: item.currentPrice,
+                currentValue: item.currentValue,
+              ),
             ),
+          // ListTile(
+          //   key: ValueKey(item.id),
+          //   title: Text(item.title),
+          //   leading: Icon(Icons.drag_handle),
+          // ),
         ],
       ),
     );
