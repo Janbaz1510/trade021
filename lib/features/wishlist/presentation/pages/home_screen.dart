@@ -15,10 +15,45 @@ class HomeScreen extends StatelessWidget {
         body: BlocBuilder<WishlistBloc, WishlistState>(
           builder: (context, state) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HomeTopbar(),
                 SearchBarWidget(),
-                SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BlocProvider.value(
+                            value: context.read<WishlistBloc>(),
+                            child: SortScreen(),
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.sort, color: Colors.black),
+                          SizedBox(width: 8),
+                          Text(
+                            "Sort By",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 Container(height: 0.5, color: Colors.grey),
                 ListView.separated(
                   itemCount: state.items.length,
